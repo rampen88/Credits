@@ -1,0 +1,37 @@
+name: Credits
+version: ${project.version}
+author: rampen88
+main: me.rampen88.credits.Credits
+softdepend: [PlaceholderAPI, mcMMO]
+commands:
+  redeem:
+    description: Redeem your credits.
+  credits:
+    description: used for various things related to credits.
+  importcredits:
+    description: Import data from file set in config.
+permissions:
+   credits.redeem.mcmmo:
+     description: Redeem your mcmmo credits.
+     default: op
+   credits.command.view:
+     description: View your credits with /credits
+     default: op
+   credits.command.view.other:
+     description: View others credits with /credits player
+     default: op
+   credits.command.send:
+     description: View others credits with /credits send player
+     default: op
+   credits.command.add:
+     description: View your credits with /credits add player amount
+     default: op
+   credits.command.take:
+     description: View your credits with /credits take player amount
+     default: op
+   credits.command.help:
+     description: plugin help with /credits help
+     default: true
+   credits.import:
+     description: Needed for /importcredits
+     default: op
