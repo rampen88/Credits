@@ -13,10 +13,12 @@ public class FlatFile implements IStorage{
 
 	private Config config;
 	private Credits plugin;
+	private boolean attemptSaveAsync;
 
 	public FlatFile(Credits plugin){
 		this.plugin = plugin;
 		config = new Config(plugin, "storage.yml");
+		attemptSaveAsync = plugin.getConfig().getBoolean("FlatFile.AttemptAsyncSave", false);
 	}
 
 	@Override
@@ -127,17 +129,11 @@ public class FlatFile implements IStorage{
 	}
 
 	private void saveFile(){
-		new BukkitRunnable(){
-			@Override
-			public void run() {
-				saveFileAsync();
-			}
-		}.runTaskAsynchronously(plugin);
-	}
-
-	// Save the file async. Synchronized so it does not get called twice (or more) before its finished.
-	private synchronized void saveFileAsync(){
-		config.saveConfig();
+		if(attemptSaveAsync){
+			config.saveConfigAsync(plugin);
+		}else{
+			config.saveConfig();
+		}
 	}
 
 }
