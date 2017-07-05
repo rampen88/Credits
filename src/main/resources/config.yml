@@ -26,7 +26,7 @@ McmmoInventory:
   # Title of the inventory.
   Title: '&c%player_name%''s Credits: %credits_credits%'
   # How many rows the inventory should have.
-  Rows: 5
+  Rows: 3
   Items:
     # Does not matter what this is, as long as its unique.
     Acrobatics:
@@ -59,7 +59,7 @@ McmmoInventory:
 
       # Position of the item in the Inventory.
       Position-X: 2
-      Position-Y: 2
+      Position-Y: 1
     Alchemy:
       Material: POTION
       Name: '&bAlchemy'
@@ -69,7 +69,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::ALCHEMY'
       CloseInventory: true
       Position-X: 4
-      Position-Y: 2
+      Position-Y: 1
     Archery:
       Material: BOW
       Name: '&bArchery'
@@ -79,7 +79,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::ARCHERY'
       CloseInventory: true
       Position-X: 6
-      Position-Y: 2
+      Position-Y: 1
     Axes:
       Material: DIAMOND_AXE
       Name: '&bAxes'
@@ -91,7 +91,7 @@ McmmoInventory:
         - 'HIDE_ATTRIBUTES'
       CloseInventory: true
       Position-X: 8
-      Position-Y: 2
+      Position-Y: 1
     Excavation:
       Material: DIAMOND_SPADE
       Name: '&bExcavation'
@@ -103,7 +103,7 @@ McmmoInventory:
         - 'HIDE_ATTRIBUTES'
       CloseInventory: true
       Position-X: 1
-      Position-Y: 3
+      Position-Y: 2
     Fishing:
       Material: FISHING_ROD
       Name: '&bFishing'
@@ -113,7 +113,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::FISHING'
       CloseInventory: true
       Position-X: 3
-      Position-Y: 3
+      Position-Y: 2
     Herbalism:
       Material: SUGAR_CANE
       Name: '&bHerbalism'
@@ -123,7 +123,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::HERBALISM'
       CloseInventory: true
       Position-X: 5
-      Position-Y: 3
+      Position-Y: 2
     Mining:
       Material: DIAMOND_PICKAXE
       Name: '&bMining'
@@ -135,7 +135,7 @@ McmmoInventory:
         - 'HIDE_ATTRIBUTES'
       CloseInventory: true
       Position-X: 7
-      Position-Y: 3
+      Position-Y: 2
     Repair:
       Material: IRON_BLOCK
       Name: '&bRepair'
@@ -145,7 +145,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::REPAIR'
       CloseInventory: true
       Position-X: 9
-      Position-Y: 3
+      Position-Y: 2
     Swords:
       Material: DIAMOND_SWORD
       Name: '&bSwords'
@@ -157,7 +157,7 @@ McmmoInventory:
         - 'HIDE_ATTRIBUTES'
       CloseInventory: true
       Position-X: 2
-      Position-Y: 4
+      Position-Y: 3
     Taming:
       Material: BONE
       Name: '&bTaming'
@@ -167,7 +167,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::TAMING'
       CloseInventory: true
       Position-X: 4
-      Position-Y: 4
+      Position-Y: 3
     Unarmed:
       Material: GLASS
       Name: '&bUnarmed'
@@ -177,7 +177,7 @@ McmmoInventory:
       ItemAction: 'mmolvl::UNARMED'
       CloseInventory: true
       Position-X: 6
-      Position-Y: 4
+      Position-Y: 3
     Woodcutting:
       Material: IRON_AXE
       Name: '&bWoodcutting'
@@ -190,7 +190,7 @@ McmmoInventory:
         - 'HIDE_ATTRIBUTES'
       CloseInventory: true
       Position-X: 8
-      Position-Y: 4
+      Position-Y: 3
 
 # All the messages. Explains itself. Does not support PlaceholderAPI, only the placeholders provided in each message.
 Messages:
