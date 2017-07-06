@@ -24,7 +24,7 @@ public class CreditsCommand implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
 		if(args.length == 0){
-			if(!messageUtil.hasPerm(commandSender, "credits.command.view.", true)) return true;
+			if(!messageUtil.hasPerm(commandSender, "credits.command.view", true)) return true;
 
 			Player p = (Player) commandSender;
 			int credits = plugin.getStorage().getCredits(p.getUniqueId());
