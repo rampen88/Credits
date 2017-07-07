@@ -121,13 +121,13 @@ public class CreditsCommand implements CommandExecutor{
 		}
 
 		if(storage.takeCredits(p.getUniqueId(), amount)){
-			if(!storage.addCredits(p.getUniqueId(), amount)){
+			if(!storage.addCredits(target.getUniqueId(), amount)){
 				// if it for some mysterious reason fails, log to console. Should never happen though.
 				plugin.getLogger().info("Something went wrong trying to add " + amount + " credits to " + target.getName() + " sent by " + p.getName());
 				return;
 			}
-			p.sendMessage(messageUtil.getMessage("CreditsCmd.Send.Sent").replace("%player%", args[1]).replace("%amount%", amount.toString()));
-			target.sendMessage(messageUtil.getMessage("CreditsCmd.Send.Received").replace("%player%", args[1]).replace("%amount%", amount.toString()));
+			p.sendMessage(messageUtil.getMessage("CreditsCmd.Send.Sent").replace("%player%", target.getName()).replace("%amount%", amount.toString()));
+			target.sendMessage(messageUtil.getMessage("CreditsCmd.Send.Received").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
 		}else{
 			plugin.getLogger().info("Something went wrong trying to take " + amount + " credits from " + p.getName());
 			// Assume its because of not enough credits.
@@ -154,11 +154,11 @@ public class CreditsCommand implements CommandExecutor{
 		if (p == null) return;
 
 		if (plugin.getStorage().addCredits(p.getUniqueId(), amount)){
-			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Added").replace("%player%", args[1]).replace("%amount%", amount.toString()));
-			p.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Target").replace("%player%", args[1]).replace("%amount%", amount.toString()));
+			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Added").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
+			p.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Target").replace("%amount%", amount.toString()));
 		}else {
 			// Should never happen, but just in case.
-			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Error").replace("%player%", args[1]));
+			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Error").replace("%player%", p.getName()));
 			plugin.getLogger().info("Something went wrong trying to add " + amount.toString() + " credits to player " + p.getName());
 		}
 
@@ -183,10 +183,10 @@ public class CreditsCommand implements CommandExecutor{
 		if(p == null) return;
 
 		if(plugin.getStorage().takeCredits(p.getUniqueId(), amount)) {
-			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Removed").replace("%player%", args[1]).replace("%amount%", amount.toString()));
-			p.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Target").replace("%player%", args[1]).replace("%amount%", amount.toString()));
+			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Removed").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
+			p.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Target").replace("%amount%", amount.toString()));
 		}else
-			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Error").replace("%player%", args[1]));
+			commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Error").replace("%player%", p.getName()));
 
 	}
 
