@@ -65,12 +65,7 @@ public class CreditsCommand implements CommandExecutor{
 				default:
 					if(!messageUtil.hasPerm(commandSender, "credits.command.view.other", false)) return true;
 
-					if(args.length < 2){
-						commandSender.sendMessage(messageUtil.getMessage("CreditsCmd.View.OtherUsage"));
-						return true;
-					}
-
-					Player p = getPlayerCheckOnline(commandSender, args[1]);
+					Player p = getPlayerCheckOnline(commandSender, args[0]);
 					if(p == null) return true;
 
 					int credits = plugin.getStorage().getCredits(p.getUniqueId());
