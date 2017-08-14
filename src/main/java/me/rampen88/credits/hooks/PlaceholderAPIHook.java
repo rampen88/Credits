@@ -3,7 +3,7 @@ package me.rampen88.credits.hooks;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
 import me.rampen88.credits.Credits;
-import me.rampen88.credits.storage.IStorage;
+import me.rampen88.credits.storage.Storage;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class PlaceholderAPIHook extends EZPlaceholderHook{
 
 		if(s.equalsIgnoreCase("credits")){
 
-			IStorage storage = plugin.getStorage();
+			Storage storage = plugin.getStorage();
 			return Integer.toString(storage.getCredits(p.getUniqueId()));
 
 		}else if(s.contains("mcmmocap_")){

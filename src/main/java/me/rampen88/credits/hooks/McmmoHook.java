@@ -5,7 +5,6 @@ import com.gmail.nossr50.datatypes.skills.SkillType;
 import me.rampen88.credits.Credits;
 import me.rampen88.credits.menu.items.ItemAction;
 import me.rampen88.credits.menu.items.RedeemMcmmoAction;
-import me.rampen88.credits.storage.IStorage;
 import org.bukkit.entity.Player;
 
 public class McmmoHook {

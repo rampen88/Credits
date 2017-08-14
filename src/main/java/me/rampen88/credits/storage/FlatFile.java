@@ -4,12 +4,10 @@ import me.rampen88.credits.Credits;
 import me.rampen88.credits.config.Config;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.yaml.snakeyaml.Yaml;
 
 import java.util.UUID;
 
-public class FlatFile implements IStorage{
+public class FlatFile implements Storage {
 
 	private Config config;
 	private Credits plugin;
@@ -22,6 +20,22 @@ public class FlatFile implements IStorage{
 	}
 
 	@Override
+	public boolean isLoaded(UUID uuid) {
+		return true;
+	}
+
+	@Override
+	public int loadCredits(UUID uuid) {
+		return 0;
+	}
+
+	@Override
+	public void loadPlayer(UUID uuid) { }
+
+	@Override
+	public void unloadPlayer(UUID uuid) { }
+
+	@Override
 	public int getCredits(UUID uuid) {
 		YamlConfiguration cfg = config.getConfig();
 
@@ -31,7 +45,6 @@ public class FlatFile implements IStorage{
 			return 0;
 		}
 
-		// Return int at 'Credits: ' with 0 as fallback in case it cant find it. That should never happen though.
 		return section.getInt("Credits", 0);
 	}
 
@@ -47,11 +60,8 @@ public class FlatFile implements IStorage{
 
 		// Add current credits.
 		amount += section.getInt("Credits", 0);
-
-		// set new amount
 		section.set("Credits", amount);
 
-		// save
 		saveFile();
 		return true;
 	}
@@ -61,7 +71,7 @@ public class FlatFile implements IStorage{
 		YamlConfiguration cfg = config.getConfig();
 
 		ConfigurationSection section = cfg.getConfigurationSection(uuid.toString());
-		// if section is null, player does not have any credits, therefor, return false as it cannot take them.
+		// if section is null, player does not have any credits, therefor, return false as it cannot take any.
 		if(section == null){
 			return false;
 		}
@@ -70,14 +80,15 @@ public class FlatFile implements IStorage{
 		int current = section.getInt("Credits", 0);
 		if(amount > current) return false;
 
-		// set new amount
 		current -= amount;
 		section.set("Credits", current);
 
-		// save
 		saveFile();
 		return true;
 	}
+
+	@Override
+	public void setCredits(UUID uuid, int amount) { }
 
 	@Override
 	public void importCredits() {
@@ -91,24 +102,18 @@ public class FlatFile implements IStorage{
 			return;
 		}
 
-		// Create or load the file
 		Config cfg = new Config(plugin, file);
-
-		// Get the config
 		YamlConfiguration config = cfg.getConfig();
 
-		// Get and validate that the section does exist.
 		ConfigurationSection section = config.getConfigurationSection(sectionPath);
 		if(section == null){
 			plugin.getLogger().info("Unable to find section '" + sectionPath + "' in the config. Make sure your settings are correct!");
 			return;
 		}
 
-		// Get the current flatfile storage.
 		YamlConfiguration current = this.config.getConfig();
 
 		int total = 0, skipped =0;
-		// Loop over all the shallow keys in the section (UUIDs).
 		for(String s : section.getKeys(false)){
 			total++;
 			int credits = section.getInt(s + path, 0);
@@ -117,14 +122,10 @@ public class FlatFile implements IStorage{
 				skipped++;
 				continue;
 			}
-			// Set the credits.
 			current.set(s + ".Credits", credits);
 		}
 
-		// Inform how many were imported
 		plugin.getLogger().info("Attempted to import a total of " + total + " players, skipped " + skipped + " due to 0 credits or invalid credits path in config.");
-
-		// Save the file.
 		saveFile();
 	}
 
