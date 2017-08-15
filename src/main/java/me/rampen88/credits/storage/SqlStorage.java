@@ -2,9 +2,7 @@ package me.rampen88.credits.storage;
 
 import com.zaxxer.hikari.HikariDataSource;
 import me.rampen88.credits.Credits;
-import me.rampen88.credits.storage.cache.PlayerCache;
-import me.rampen88.credits.storage.cache.PlayerNotLoadedException;
-import me.rampen88.credits.storage.cache.CachedPlayer;
+import me.rampen88.credits.storage.importer.FlatFileImporter;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
@@ -13,19 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-public class SqlStorage implements Storage {
+public class SqlStorage extends CachedStorage {
 
 	private HikariDataSource dataSource;
-	private PlayerCache playerCache;
 	private Credits plugin;
 	private String table;
 
 	SqlStorage(Credits plugin, HikariDataSource dataSource, String table) {
+		super(plugin);
 		this.plugin = plugin;
 		this.dataSource = dataSource;
 		this.table = table;
 		createTablesAsync();
-		playerCache = new PlayerCache(this, plugin);
 	}
 
 	private void createTablesAsync(){
@@ -53,11 +50,6 @@ public class SqlStorage implements Storage {
 	}
 
 	@Override
-	public boolean isLoaded(UUID uuid) {
-		return playerCache.isLoaded(uuid);
-	}
-
-	@Override
 	public int loadCredits(UUID uuid){
 		try(Connection connection = getConnection()){
 
@@ -73,43 +65,6 @@ public class SqlStorage implements Storage {
 			e.printStackTrace();
 		}
 		return 0;
-	}
-
-	@Override
-	public void loadPlayer(UUID uuid) {
-		playerCache.loadPlayer(uuid);
-	}
-
-	@Override
-	public void unloadPlayer(UUID uuid) {
-		playerCache.unloadPlayer(uuid);
-	}
-
-	@Override
-	public int getCredits(UUID uuid){
-		try {
-			CachedPlayer cachedPlayer = playerCache.getPlayer(uuid);
-			return cachedPlayer.getCredits();
-		} catch (PlayerNotLoadedException e) {
-			return 0;
-		}
-	}
-
-	@Override
-	public boolean addCredits(UUID uuid, int amount){
-		try {
-			CachedPlayer cachedPlayer = playerCache.getPlayer(uuid);
-			cachedPlayer.addCredits(amount);
-			return true;
-		} catch (PlayerNotLoadedException e) {
-			return false;
-		}
-	}
-
-	@Override
-	public boolean takeCredits(UUID uuid, int amount) throws PlayerNotLoadedException {
-		CachedPlayer cachedPlayer = playerCache.getPlayer(uuid);
-		return cachedPlayer.takeCredits(amount);
 	}
 
 	@Override
@@ -129,6 +84,7 @@ public class SqlStorage implements Storage {
 
 	@Override
 	public void importCredits() {
-		// TODO
+		FlatFileImporter fileImporter = new FlatFileImporter(plugin, this);
+		fileImporter.importCredits();
 	}
 }

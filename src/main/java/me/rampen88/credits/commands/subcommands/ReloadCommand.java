@@ -18,6 +18,6 @@ public class ReloadCommand extends SubCommand{
 			return;
 
 		plugin.reload();
-		sender.sendMessage(messageUtil.getMessage("CreditsCmd.Reload"));
+		sender.sendMessage(messageUtil.getMessage("Commands.Reload"));
 	}
 }

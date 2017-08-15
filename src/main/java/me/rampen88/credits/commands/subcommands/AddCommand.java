@@ -19,13 +19,13 @@ public class AddCommand extends SubCommand{
 			return;
 
 		if (args.length != 3) {
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Usage"));
+			sender.sendMessage(messageUtil.getMessage("Commands.Add.Usage"));
 			return;
 		}
 
 		Integer amount = getIntegerFromInput(args[2]);
 		if (amount == null) {
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Usage"));
+			sender.sendMessage(messageUtil.getMessage("Commands.Add.Usage"));
 			return;
 		}
 
@@ -34,10 +34,10 @@ public class AddCommand extends SubCommand{
 		if (p == null) return;
 
 		if(plugin.getStorage().addCredits(p.getUniqueId(), amount)){
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Added").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
-			p.sendMessage(messageUtil.getMessage("CreditsCmd.Add.Target").replace("%amount%", amount.toString()));
+			sender.sendMessage(messageUtil.getMessage("Commands.Add.Added").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
+			p.sendMessage(messageUtil.getMessage("Commands.Add.Target").replace("%amount%", amount.toString()));
 		}else{
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.NotLoaded").replace("%player%", p.getName()));
+			sender.sendMessage(messageUtil.getMessage("Commands.NotLoaded").replace("%player%", p.getName()));
 		}
 	}
 }

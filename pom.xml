@@ -47,15 +47,15 @@
                     <relocations>
                         <relocation>
                             <pattern>org.h2</pattern>
-                            <shadedPattern>me.rampen88.credits.shaded.h2database</shadedPattern>
+                            <shadedPattern>me.rampen88.credits.shaded.org.h2</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.zaxxer</pattern>
-                            <shadedPattern>me.rampen88.credits.shaded.hikaricp</shadedPattern>
+                            <shadedPattern>me.rampen88.credits.shaded.com.zaxxer</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.slf4j</pattern>
-                            <shadedPattern>me.rampen88.credits.shaded.slf4j</shadedPattern>
+                            <shadedPattern>me.rampen88.credits.shaded.org.slf4j</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -129,6 +129,5 @@
             <version>1.6.4</version>
         </dependency>
     </dependencies>
-
 
 </project>

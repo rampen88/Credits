@@ -30,7 +30,6 @@ public class Config {
 
 	public void saveConfigAsync(Credits plugin){
 		synchronized (config){
-
 			final String data = config.saveToString();
 
 			new BukkitRunnable(){
@@ -44,7 +43,6 @@ public class Config {
 	}
 
 	private synchronized void save(String data){
-
 		try(Writer writer = new OutputStreamWriter(new FileOutputStream(file))){
 			writer.write(data);
 		} catch (IOException e) {
@@ -52,11 +50,4 @@ public class Config {
 		}
 
 	}
-	
-	public void reloadConfig(){
-		config = YamlConfiguration.loadConfiguration(file);
-	}
-	
-	
-	
 }

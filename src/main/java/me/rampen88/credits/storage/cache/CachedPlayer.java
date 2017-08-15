@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CachedPlayer {
+public class CachedPlayer implements QueuedPlayer{
 
 	private final AtomicInteger credits;
 	private final Storage storage;

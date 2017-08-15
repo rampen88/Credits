@@ -9,9 +9,6 @@ public class StorageFactory {
 
 	public static Storage getStorage(String type, Credits plugin){
 		switch (type.toLowerCase()){
-			case "file":
-			case "flatfile":
-				return new FlatFile(plugin);
 			case "mysql":
 			case "h2":
 				return getSqlStorage(type, plugin);

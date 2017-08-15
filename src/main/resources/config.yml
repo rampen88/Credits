@@ -1,4 +1,4 @@
-# What storage type to use. Supports h2, mysql and flatfile. (h2 or mysql recommended over flatfile)
+# What storage type to use. Supports h2 and mysql.
 StorageType: h2
 
 # Settings related to flatfile storage type.
@@ -34,10 +34,10 @@ MySql:
 Import:
   # Name of the file to import from. If the file does not exist, it will create it.
   # Set to empty string to disable import command.
-  File: 'oldusers.yml'
+  File: 'storage.yml'
 
   # Path to where UUIDs are stored.
-  UuidSection: 'Storage'
+  UuidSection: ''
 
   # UUID Will be added to the start of the message.
   CreditsPath: '.Credits'
@@ -221,7 +221,7 @@ McmmoInventory:
 Messages:
   NoLevelCap: '&cNone'
   NoPermission: '&4You do not have permission to do that.'
-  CreditsCmd:
+  Commands:
     Amount: '&cAmount cannot be 0 or less.'
     PlayerNotOnline: '&cUnable to find player ''%player%''. Are they online?'
     NotLoaded: '&cStill in the process of loading %player%''s credits.'
@@ -251,7 +251,7 @@ Messages:
     Reload: '&aAttempted to reload configuration.'
     Help:
       All: |
-        &f======== &eCredits Help &f========
+        &f========= &eCredits Help &f=========
         &e/Redeem &7- Open McMMO Redeem GUI
         &e/Credits &7- See how many credits you have
         &e/Credits [player] &7- See how many credits a player has

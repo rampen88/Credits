@@ -19,13 +19,13 @@ public class TakeCommand extends SubCommand{
 			return;
 
 		if(args.length != 3){
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Usage"));
+			sender.sendMessage(messageUtil.getMessage("Commands.Take.Usage"));
 			return;
 		}
 
 		Integer amount = getIntegerFromInput(args[2]);
 		if(amount == null){
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Usage"));
+			sender.sendMessage(messageUtil.getMessage("Commands.Take.Usage"));
 			return;
 		}
 
@@ -33,10 +33,10 @@ public class TakeCommand extends SubCommand{
 		if(p == null) return;
 
 		if(takeCredits(p.getUniqueId(), amount)) {
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Removed").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
-			p.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Target").replace("%amount%", amount.toString()));
+			sender.sendMessage(messageUtil.getMessage("Commands.Take.Removed").replace("%player%", p.getName()).replace("%amount%", amount.toString()));
+			p.sendMessage(messageUtil.getMessage("Commands.Take.Target").replace("%amount%", amount.toString()));
 		}else
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.Take.Error").replace("%player%", p.getName()));
+			sender.sendMessage(messageUtil.getMessage("Commands.Take.Error").replace("%player%", p.getName()));
 
 	}
 }

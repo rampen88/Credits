@@ -29,6 +29,6 @@ public class ViewCommand extends SubCommand{
 			msg = "Other";
 		}
 		int credits = plugin.getStorage().getCredits(target.getUniqueId());
-		sender.sendMessage(messageUtil.getMessage("CreditsCmd.View." + msg).replace("%player%", target.getName()).replace("%amount%", Integer.toString(credits)));
+		sender.sendMessage(messageUtil.getMessage("Commands.View." + msg).replace("%player%", target.getName()).replace("%amount%", Integer.toString(credits)));
 	}
 }

@@ -16,7 +16,7 @@ public abstract class SubCommand {
 	protected Credits plugin;
 	private List<String> aliases;
 
-	public SubCommand(Credits plugin, List<String> aliases) {
+	protected SubCommand(Credits plugin, List<String> aliases) {
 		this.aliases = aliases;
 		this.plugin = plugin;
 		messageUtil = plugin.getMessageUtil();
@@ -32,7 +32,7 @@ public abstract class SubCommand {
 		Player p = Bukkit.getPlayer(name);
 		// Send message to the person executing the command if player is not online.
 		if(p == null){
-			sender.sendMessage(messageUtil.getMessage("CreditsCmd.PlayerNotOnline").replace("%player%", name));
+			sender.sendMessage(messageUtil.getMessage("Commands.PlayerNotOnline").replace("%player%", name));
 			return null;
 		}
 

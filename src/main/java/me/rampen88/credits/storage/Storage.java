@@ -8,11 +8,11 @@ public interface Storage {
 
 	boolean isLoaded(UUID uuid);
 
-	int loadCredits(UUID uuid);
-
 	void loadPlayer(UUID uuid);
 
 	void unloadPlayer(UUID uuid);
+
+	int loadCredits(UUID uuid);
 
 	int getCredits(UUID uuid);
 
