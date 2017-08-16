@@ -38,23 +38,19 @@ public class Credits extends JavaPlugin {
 
 		itemBuilder = new ItemBuilder(this);
 		messageUtil = new MessageUtil(this);
+		storage = setupStorage();
 
 		registerListener();
 		registerCommands();
-
-		menuMaster = new MenuMaster(this);
 
 		if(getServer().getPluginManager().isPluginEnabled("PlaceholderAPI") && getConfig().getBoolean("UsePlaceholderAPI")){
 			placeholderAPIHook = new PlaceholderAPIHook(this);
 			placeholderAPIHook.hook();
 		}
-
-		if(getServer().getPluginManager().isPluginEnabled("mcMMO")){
+		if(getServer().getPluginManager().isPluginEnabled("mcMMO"))
 			mcmmoHook = new McmmoHook(this);
-		}
-
-		reload();
-		storage = setupStorage();
+		
+		menuMaster = new MenuMaster(this);
 	}
 
 	@Override

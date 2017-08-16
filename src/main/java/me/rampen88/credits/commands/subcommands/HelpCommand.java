@@ -10,15 +10,17 @@ import java.util.Arrays;
 public class HelpCommand extends SubCommand{
 
 	public HelpCommand(Credits plugin) {
-		super(plugin, Arrays.asList("help", "?", "whydoesitnotwork"));
+		super(plugin, Arrays.asList("help", "?", "howdoesthiswork"));
 	}
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		StringBuilder stringBuilder = new StringBuilder();
 
-		stringBuilder.append(messageUtil.getMessage("Commands.Help.All"));
-		if(sender.hasPermission("credits.help.admin"))
+		if(sender.hasPermission("credits.command.help"))
+			stringBuilder.append(messageUtil.getMessage("Commands.Help.All"));
+
+		if(sender.hasPermission("credits.command.help.admin"))
 			stringBuilder.append(messageUtil.getMessage("Commands.Help.Admin"));
 
 		stringBuilder.append(ChatColor.GRAY).append(plugin.getDescription().getName()).append(" version ").append(plugin.getDescription().getVersion()).append(" made by rampen88");

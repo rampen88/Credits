@@ -23,7 +23,6 @@ public class PlayerListener implements Listener {
 
 	private HashMap<UUID, WatchedPlayer> players = new HashMap<>();
 
-	// Use .LOWEST event priority to get called before other events.
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void chatEvent(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();

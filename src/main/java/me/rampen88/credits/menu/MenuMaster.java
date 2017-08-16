@@ -16,11 +16,11 @@ import java.util.List;
 public class MenuMaster {
 
 	private Credits plugin;
-
 	private Menu mcmmoMenu;
 
 	public MenuMaster(Credits plugin) {
 		this.plugin = plugin;
+		reload();
 	}
 
 	public void openMcmmoMenu(Player p){

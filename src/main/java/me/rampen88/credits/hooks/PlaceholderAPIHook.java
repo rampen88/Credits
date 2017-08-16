@@ -19,10 +19,9 @@ public class PlaceholderAPIHook extends EZPlaceholderHook{
 
 	@Override
 	public String onPlaceholderRequest(Player p, String s) {
-		// check if player is null
-		if(p == null) return "";
-
 		if(s.equalsIgnoreCase("credits")){
+			if(p == null)
+				return "";
 
 			Storage storage = plugin.getStorage();
 			return Integer.toString(storage.getCredits(p.getUniqueId()));
@@ -30,12 +29,12 @@ public class PlaceholderAPIHook extends EZPlaceholderHook{
 		}else if(s.contains("mcmmocap_")){
 
 			String[] placeholderThing = s.split("_");
-			if(placeholderThing.length < 2) return "";
+			if(placeholderThing.length < 2)
+				return "";
 
 			int levelCap = plugin.getMcmmoHook().getLevelCap(placeholderThing[1]);
 			return levelCap == Integer.MAX_VALUE ? plugin.getMessageUtil().getMessage("NoLevelCap") : Integer.toString(levelCap);
 		}
-
 
 		return null;
 	}

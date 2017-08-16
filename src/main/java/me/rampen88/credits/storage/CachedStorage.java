@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public abstract class CachedStorage implements Storage{
 
-	private PlayerCache playerCache;
+	private final PlayerCache playerCache;
 
 	CachedStorage(Credits plugin) {
 		playerCache = new PlayerCache(this, plugin);

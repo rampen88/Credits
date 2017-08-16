@@ -11,8 +11,8 @@ public class CachedPlayer implements QueuedPlayer{
 
 	private final AtomicInteger credits;
 	private final Storage storage;
-	private Credits plugin;
-	private UUID uuid;
+	private final Credits plugin;
+	private final UUID uuid;
 
 	CachedPlayer(UUID uuid, int amount, Storage storage, Credits plugin) {
 		this.storage = storage;

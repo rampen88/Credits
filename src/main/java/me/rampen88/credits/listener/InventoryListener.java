@@ -25,7 +25,6 @@ public class InventoryListener implements Listener{
 	}
 
 	public void reload(){
-		// Get minimum delay, with 1000 as default.
 		minDelay = plugin.getConfig().getLong("InventoryClickDelay", 1000);
 	}
 
@@ -50,8 +49,8 @@ public class InventoryListener implements Listener{
 				if (minDelay > 0) {
 					Long last = playerCooldown.get(p.getUniqueId());
 					long now = System.currentTimeMillis();
-
-					if(last != null && last > now) return;
+					if(last != null && last > now)
+						return;
 
 					playerCooldown.put(p.getUniqueId(), now + minDelay);
 				}

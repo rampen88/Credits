@@ -13,8 +13,8 @@ public class PlayerCache {
 
 	private final Map<UUID, QueuedPlayer> queuedPlayers = new ConcurrentHashMap<>();
 	private final Map<UUID, CachedPlayer> playerCache = new ConcurrentHashMap<>();
-	private Storage storage;
-	private Credits plugin;
+	private final Storage storage;
+	private final Credits plugin;
 
 	public PlayerCache(Storage storage, Credits plugin) {
 		this.storage = storage;

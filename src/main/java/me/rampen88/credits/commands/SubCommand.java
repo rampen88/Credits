@@ -30,7 +30,6 @@ public abstract class SubCommand {
 
 	protected Player getPlayerCheckOnline(CommandSender sender, String name){
 		Player p = Bukkit.getPlayer(name);
-		// Send message to the person executing the command if player is not online.
 		if(p == null){
 			sender.sendMessage(messageUtil.getMessage("Commands.PlayerNotOnline").replace("%player%", name));
 			return null;

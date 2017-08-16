@@ -32,6 +32,9 @@ permissions:
    credits.command.help:
      description: plugin help with /credits help
      default: true
+   credits.command.help.admin:
+     description: Shows additional commands when doing /credits help
+     default: op
    credits.import:
      description: Needed for /importcredits
      default: op

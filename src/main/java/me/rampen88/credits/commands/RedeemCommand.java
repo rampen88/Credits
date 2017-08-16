@@ -19,7 +19,8 @@ public class RedeemCommand implements CommandExecutor{
 
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if(!messageUtil.hasPerm(commandSender,"credits.redeem.mcmmo", true)) return true;
+		if(!messageUtil.hasPerm(commandSender,"credits.redeem.mcmmo", true))
+			return true;
 
 		Player p = (Player) commandSender;
 		plugin.getMenuMaster().openMcmmoMenu(p);

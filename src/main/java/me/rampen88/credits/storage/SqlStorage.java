@@ -57,7 +57,7 @@ public class SqlStorage extends CachedStorage {
 			statement.setString(1, uuid.toString());
 
 			ResultSet resultSet = statement.executeQuery();
-			if(resultSet.isBeforeFirst()){ // if there is no rows this returns false,
+			if(resultSet.isBeforeFirst()){ // if there is no rows this returns false.
 				resultSet.next();
 				return resultSet.getInt("credits");
 			}
