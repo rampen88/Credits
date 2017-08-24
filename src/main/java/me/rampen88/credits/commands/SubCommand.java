@@ -30,27 +30,23 @@ public abstract class SubCommand {
 
 	protected Player getPlayerCheckOnline(CommandSender sender, String name){
 		Player p = Bukkit.getPlayer(name);
-		if(p == null){
+		if(p == null)
 			sender.sendMessage(messageUtil.getMessage("Commands.PlayerNotOnline").replace("%player%", name));
-			return null;
-		}
-
 		return p;
 	}
 
 	protected Integer getIntegerFromInput(String input){
 		try{
 			return Integer.valueOf(input);
-
-		}catch(NumberFormatException ignored){}
-
-		return null;
+		}catch(NumberFormatException ignored){
+			return null;
+		}
 	}
 
 	protected boolean takeCredits(UUID uuid, int amount){
 		try{
 			return plugin.getStorage().takeCredits(uuid, amount);
-		} catch (PlayerNotLoadedException e) {
+		} catch (PlayerNotLoadedException ignored) {
 			return false;
 		}
 	}

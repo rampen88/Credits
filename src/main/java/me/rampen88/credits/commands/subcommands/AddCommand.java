@@ -29,7 +29,6 @@ public class AddCommand extends SubCommand{
 			return;
 		}
 
-		// Check that target player is online
 		Player p = getPlayerCheckOnline(sender, args[1]);
 		if (p == null) return;
 

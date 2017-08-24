@@ -25,7 +25,6 @@ public class SendCommand extends SubCommand{
 
 		Player p = (Player) sender;
 
-		// Integer instead of int to allow for null in case input is not valid.
 		Integer amount = getIntegerFromInput(args[2]);
 		if(amount == null){
 			sender.sendMessage(messageUtil.getMessage("Commands.Send.Usage"));
@@ -35,7 +34,6 @@ public class SendCommand extends SubCommand{
 			return;
 		}
 
-		// Make sure player has enough credits.
 		int current = plugin.getStorage().getCredits(p.getUniqueId());
 		if(amount > current){
 			p.sendMessage(messageUtil.getMessage("Commands.Send.NotEnough"));

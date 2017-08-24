@@ -1,11 +1,6 @@
 # What storage type to use. Supports h2 and mysql.
 StorageType: h2
 
-# Settings related to flatfile storage type.
-FlatFile:
-  # If the plugin should attempt to save the storage.yml async.
-  AttemptAsyncSave: false
-
 # Needed for all Inventory/GUI Placeholders, in inventory title, item names and item lores.
 # Changing this requires a restart.
 UsePlaceholderAPI: true

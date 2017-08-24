@@ -49,7 +49,7 @@ public class Credits extends JavaPlugin {
 		}
 		if(getServer().getPluginManager().isPluginEnabled("mcMMO"))
 			mcmmoHook = new McmmoHook(this);
-		
+
 		menuMaster = new MenuMaster(this);
 	}
 
@@ -80,7 +80,6 @@ public class Credits extends JavaPlugin {
 		inventoryListener.reload();
 	}
 
-	// Apply placeholders if placeholderAPIHook is not null.
 	public String applyPlaceholders(Player p, String s){
 		return placeholderAPIHook != null ? placeholderAPIHook.applyPlaceholders(p, s) : s;
 	}
