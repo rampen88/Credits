@@ -15,11 +15,11 @@ public class ImportCommand implements CommandExecutor{
 
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if(!plugin.getMessageUtil().hasPerm(commandSender, "credits.import", false)) return true;
+		if(!plugin.getMessageUtil().hasPerm(commandSender, "credits.import", false))
+			return true;
 
 		plugin.getStorage().importCredits();
-		commandSender.sendMessage(plugin.getMessageUtil().getMessage("CreditsCmd.Import.Attempted"));
-
-		return false;
+		commandSender.sendMessage(plugin.getMessageUtil().getMessage("Commands.Import.Attempted"));
+		return true;
 	}
 }

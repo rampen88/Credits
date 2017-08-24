@@ -13,7 +13,8 @@ class ConfigurationCreator {
 	static File loadFile(Credits plugin, String file) {
 
 		File folder = plugin.getDataFolder();
-		if (!folder.exists()) folder.mkdir();
+		if (!folder.exists())
+			folder.mkdir();
 
 		File resourceFile = new File(folder, file);
 		try {

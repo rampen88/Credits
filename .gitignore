@@ -17,4 +17,5 @@ bin/
 target/
 *.iml
 .idea/
+dependency-reduced-pom.xml
 

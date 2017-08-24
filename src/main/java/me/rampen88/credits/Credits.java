@@ -8,8 +8,8 @@ import me.rampen88.credits.hooks.PlaceholderAPIHook;
 import me.rampen88.credits.listener.InventoryListener;
 import me.rampen88.credits.listener.PlayerListener;
 import me.rampen88.credits.menu.MenuMaster;
-import me.rampen88.credits.storage.FlatFile;
-import me.rampen88.credits.storage.IStorage;
+import me.rampen88.credits.storage.Storage;
+import me.rampen88.credits.storage.StorageFactory;
 import me.rampen88.credits.util.ItemBuilder;
 import me.rampen88.credits.util.MessageUtil;
 
@@ -22,41 +22,35 @@ import java.util.List;
 
 public class Credits extends JavaPlugin {
 
+	private static ItemBuilder itemBuilder;
 	private PlaceholderAPIHook placeholderAPIHook;
 	private MenuMaster menuMaster;
 	private McmmoHook mcmmoHook;
-	private IStorage storage;
+	private Storage storage;
 
-	private PlayerListener playerListener;
 	private InventoryListener inventoryListener;
-
+	private PlayerListener playerListener;
 	private MessageUtil messageUtil;
-	private static ItemBuilder itemBuilder;
 
 	@Override
 	public void onEnable() {
-		// Save config with comments.
 		saveDefaultConfig();
 
 		itemBuilder = new ItemBuilder(this);
 		messageUtil = new MessageUtil(this);
+		storage = setupStorage();
 
 		registerListener();
 		registerCommands();
-
-		menuMaster = new MenuMaster(this);
 
 		if(getServer().getPluginManager().isPluginEnabled("PlaceholderAPI") && getConfig().getBoolean("UsePlaceholderAPI")){
 			placeholderAPIHook = new PlaceholderAPIHook(this);
 			placeholderAPIHook.hook();
 		}
-
-		if(getServer().getPluginManager().isPluginEnabled("mcMMO")){
+		if(getServer().getPluginManager().isPluginEnabled("mcMMO"))
 			mcmmoHook = new McmmoHook(this);
-		}
 
-		reload();
-		storage = setupStorage();
+		menuMaster = new MenuMaster(this);
 	}
 
 	@Override
@@ -86,7 +80,6 @@ public class Credits extends JavaPlugin {
 		inventoryListener.reload();
 	}
 
-	// Apply placeholders if placeholderAPIHook is not null.
 	public String applyPlaceholders(Player p, String s){
 		return placeholderAPIHook != null ? placeholderAPIHook.applyPlaceholders(p, s) : s;
 	}
@@ -99,7 +92,7 @@ public class Credits extends JavaPlugin {
 		return mcmmoHook;
 	}
 
-	public IStorage getStorage() {
+	public Storage getStorage() {
 		return storage;
 	}
 
@@ -123,16 +116,9 @@ public class Credits extends JavaPlugin {
 		return itemBuilder;
 	}
 
-	// Gets a instance of storage type.
-	private IStorage setupStorage(){
-		switch (getConfig().getString("StorageType", "flatfile").toLowerCase()){
-			case "flatfile":
-				return new FlatFile(this);
-			default:
-				getLogger().info(getConfig().getString("StorageType") + " is not a valid storage type.");
-				break;
-		}
-		return null;
+	private Storage setupStorage(){
+		String storageType = getConfig().getString("StorageType", "h2");
+		return StorageFactory.getStorage(storageType, this);
 	}
 
 }

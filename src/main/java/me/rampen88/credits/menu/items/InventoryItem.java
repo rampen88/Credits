@@ -10,7 +10,7 @@ public class InventoryItem {
 	private ItemAction clickAction;
 	private boolean closeInv;
 	
-	public InventoryItem(ItemStack item, ItemAction clickAction, boolean closeInv){
+	InventoryItem(ItemStack item, ItemAction clickAction, boolean closeInv){
 		this.item = item;
 		this.clickAction = clickAction;
 		this.closeInv = closeInv;

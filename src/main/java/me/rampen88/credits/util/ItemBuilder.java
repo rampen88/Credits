@@ -10,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ItemBuilder {
@@ -27,7 +26,7 @@ public class ItemBuilder {
 
 		ItemMeta meta = item.getItemMeta();
 
-		// Attempt to add color and placeholders to ItemName and lore
+		// Attempt to add color and placeholders to name and lore
 		if(name != null) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', pl.applyPlaceholders(p, name)));
 		if(lore != null){
 			lore = pl.applyPlaceholders(p, lore);
@@ -47,8 +46,7 @@ public class ItemBuilder {
 		return item;
 	}
 
-	// TODO: Move to MessageUtil?
-	public List<String> translateColors(List<String> lore){
+	private List<String> translateColors(List<String> lore){
 		List<String> list = new ArrayList<>();
 		for(String s : lore){
 			list.add(ChatColor.translateAlternateColorCodes('&', s));

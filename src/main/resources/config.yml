@@ -1,23 +1,38 @@
-# What storage type to use. Currently only supports flatfile.
-StorageType: flatfile
-
-# Settings related to flatfile storage type.
-FlatFile:
-  # If the plugin should attempt to save the storage.yml async.
-  AttemptAsyncSave: false
+# What storage type to use. Supports h2 and mysql.
+StorageType: h2
 
 # Needed for all Inventory/GUI Placeholders, in inventory title, item names and item lores.
 # Changing this requires a restart.
 UsePlaceholderAPI: true
 
+# Connection pool settings
+# Applies to both h2 and mysql.
+ConnectionPool:
+  MaxPoolSize: 10
+  ConnectionTimeout: 30000
+  IdleTimeout: 600000
+  MaxLifetime: 1800000
+
+H2:
+  MV_Store: false
+
+MySql:
+  Database: 'Database'
+  Username: 'user'
+  Password: 'pass'
+  Host: 'localhost'
+  Port: '3306'
+  UseSSL: true
+  TablePrefix: 'credits_'
+
 # This will override all the users its importing from.
 Import:
   # Name of the file to import from. If the file does not exist, it will create it.
   # Set to empty string to disable import command.
-  File: 'oldusers.yml'
+  File: 'storage.yml'
 
   # Path to where UUIDs are stored.
-  UuidSection: 'Storage'
+  UuidSection: ''
 
   # UUID Will be added to the start of the message.
   CreditsPath: '.Credits'
@@ -201,9 +216,10 @@ McmmoInventory:
 Messages:
   NoLevelCap: '&cNone'
   NoPermission: '&4You do not have permission to do that.'
-  CreditsCmd:
+  Commands:
     Amount: '&cAmount cannot be 0 or less.'
     PlayerNotOnline: '&cUnable to find player ''%player%''. Are they online?'
+    NotLoaded: '&cStill in the process of loading %player%''s credits.'
     Add:
       Usage: '&cIncorrect command usage. Try: /credits add <player> <amount>'
       Added: '&aSuccessfully added %amount% credits to %player%.'
@@ -229,14 +245,16 @@ Messages:
       Attempted: '&aAttempted to import from configured file. Check console for potential errors.'
     Reload: '&aAttempted to reload configuration.'
     Help:
-    - '&7===== &aCredits Help &7====='
-    - '&a/Redeem &7- Open McMMO Redeem GUI'
-    - '&a/Credits &7- See how many credits you have'
-    - '&a/Credits [player] &7- See how many credits [player] has'
-    - '&a/Credits send <player> <amount>'
-    - '&a/Credits add <player> <amount>'
-    - '&a/Credits take <player> <amount>'
-    - '&a/Credits reload'
+      All: |
+        &f========= &eCredits Help &f=========
+        &e/Redeem &7- Open McMMO Redeem GUI
+        &e/Credits &7- See how many credits you have
+        &e/Credits [player] &7- See how many credits a player has
+        &e/Credits send <player> <amount> &7- Send credits to a player
+      Admin: |
+        &c/Credits add <player> <amount>
+        &c/Credits take <player> <amount>
+        &c/Credits reload
   MissingCredits: '&cYou do not have enough credits for that.'
   McMMO:
     EnterAmount: '&aPlease type how many credits you wish to redeem. 0 to cancel.'
